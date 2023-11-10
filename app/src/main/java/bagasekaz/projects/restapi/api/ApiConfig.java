@@ -13,7 +13,7 @@ public class ApiConfig {
                 .addInterceptor(loggingInterceptor)
                 .build();
         Retrofit retrofit = new retrofit2.Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://dev6.dansmultipro.com/api/recruitment/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

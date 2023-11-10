@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">RestAPI</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="user_name">Username</string>
+    <string name="job_detail">Job Detail</string>
+    <string name="go_to_website">Go to Website</string>
+    <string name="company">Company</string>
+    <string name="job_description">Job Description</string>
+    <string name="title">Title</string>
+    <string name="fulltime">Fulltime</string>
+    <string name="description">Description</string>
 </resources>

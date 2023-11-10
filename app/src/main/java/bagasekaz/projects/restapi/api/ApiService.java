@@ -1,10 +1,21 @@
 package bagasekaz.projects.restapi.api;
 
-import bagasekaz.projects.restapi.model.RecruitmentResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+import bagasekaz.projects.restapi.model.Recruitment;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
-public class ApiService {
+public interface ApiService {
+    @GET("positions.json")
+    Call<ArrayList<Recruitment>> getRecruitment();
 
+    @GET("positions.json")
+    Call<Recruitment> getListRecruitment(@Query("page") String page);
+
+    @GET("positions/{id}")
+    Call<Recruitment> getIdRecruitment(@Path("id") String id);
 }
