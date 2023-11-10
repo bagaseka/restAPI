@@ -13,10 +13,8 @@ import java.util.ArrayList;
 import bagasekaz.projects.restapi.adapter.ListAdapter;
 import bagasekaz.projects.restapi.databinding.ActivityMainBinding;
 import bagasekaz.projects.restapi.model.MainViewModel;
-import bagasekaz.projects.restapi.model.Recruitment;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<Recruitment> recruitments = new ArrayList<>();
     private MainViewModel viewModel;
     private ActivityMainBinding binding;
     @Override
@@ -26,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         initRv();
+        getRecruitments();
+        findRecruitmentList();
 
+    }
+
+    private void getRecruitments(){
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         viewModel.getRecruitmentListData().observe(this, recruitmentList -> {
@@ -41,21 +44,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         viewModel.getRecruitmentList();
-
-        findRecuitmentList();
     }
-
-    private void findRecuitmentList(){
+    private void findRecruitmentList(){
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 viewModel.searchRecruitmentByDescription(newText);
-                return false;
+                return true;
             }
         });
 

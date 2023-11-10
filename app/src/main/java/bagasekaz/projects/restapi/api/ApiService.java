@@ -16,6 +16,9 @@ public interface ApiService {
     @GET("positions.json")
     Call<Recruitment> getListRecruitment(@Query("page") String page);
 
+    @GET("positions.json")
+    Call<List<Recruitment>> searchRecruitmentByDescription(@Query("description") String description);
+
     @GET("positions/{id}")
     Call<Recruitment> getIdRecruitment(@Path("id") String id);
 }

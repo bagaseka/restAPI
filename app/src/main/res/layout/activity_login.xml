@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
+    android:clipToPadding="false"
     android:id="@+id/layout"
     tools:context=".LoginActivity">
 
@@ -13,7 +15,6 @@
         style="@style/HeadLineText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
         android:text="@string/login"
         android:textAlignment="textStart"
         android:layout_marginTop="40dp"/>
@@ -21,7 +22,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="73dp"
         android:elevation="6dp"
         android:background="@color/white"
@@ -32,15 +32,13 @@
         <EditText
             android:id="@+id/inputUserName"
             style="@style/EditText"
-            android:hint="@string/user_name"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/user_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
         android:background="@color/white"
         app:startIconDrawable="@drawable/ic_pass"
         app:startIconTint="@color/colorPrimary"
@@ -61,6 +59,4 @@
         android:id="@+id/SignIn"
         style="@style/MainButton"
         android:text="@string/login" />
-
-
 </LinearLayout>

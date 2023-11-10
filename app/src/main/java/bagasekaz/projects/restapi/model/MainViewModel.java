@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bagasekaz.projects.restapi.api.ApiConfig;
-import bagasekaz.projects.restapi.model.Recruitment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 public class MainViewModel extends ViewModel {
 
@@ -26,24 +24,27 @@ public class MainViewModel extends ViewModel {
     public LiveData<Recruitment> getRecruitmentData() {
         return recruitmentData;
     }
-    private List<Recruitment> originalList = new ArrayList<>();
     public LiveData<String> getErrorMessage() {
         return errorMessage;
     }
 
     public void searchRecruitmentByDescription(String description) {
-        if (originalList.isEmpty()) {
-            originalList.addAll(recruitmentListData.getValue());
-        }
-
-        List<Recruitment> filteredList = new ArrayList<>();
-        for (Recruitment recruitment : originalList) {
-            if (recruitment.getDescription().toLowerCase().contains(description.toLowerCase())) {
-                filteredList.add(recruitment);
+        Call<List<Recruitment>> recruitmentResponseCall = ApiConfig.getApiService().searchRecruitmentByDescription(description);
+        recruitmentResponseCall.enqueue(new Callback<List<Recruitment>>() {
+            @Override
+            public void onResponse(Call<List<Recruitment>> call, Response<List<Recruitment>> response) {
+                if (response.isSuccessful()) {
+                    recruitmentListData.setValue(response.body());
+                } else {
+                    errorMessage.setValue("Failed to fetch data");
+                }
             }
-        }
 
-        recruitmentListData.setValue(filteredList);
+            @Override
+            public void onFailure(Call<List<Recruitment>> call, Throwable t) {
+                errorMessage.setValue("Network error");
+            }
+        });
     }
     public void getRecruitmentList() {
         Call<ArrayList<Recruitment>> recruitmentResponseCall = ApiConfig.getApiService().getRecruitment();
