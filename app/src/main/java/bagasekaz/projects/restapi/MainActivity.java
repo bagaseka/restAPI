@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 
 import bagasekaz.projects.restapi.adapter.ListAdapter;
 import bagasekaz.projects.restapi.databinding.ActivityMainBinding;
